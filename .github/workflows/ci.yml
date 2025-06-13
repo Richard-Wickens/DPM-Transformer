@@ -1,0 +1,49 @@
+# .github/workflows/ci.yml
+
+name: CI
+
+# Trigger on pushes and PRs to main
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Lint → Test → Build Containers
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1) Check out your code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2) Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      # 3) Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 4) Lint step (placeholder)
+      - name: Lint
+        run: |
+          echo "TODO: run linter (e.g. flake8 .)"
+
+      # 5) Test step (placeholder)
+      - name: Run tests
+        run: |
+          echo "TODO: run tests (e.g. pytest)"
+
+      # 6) Build containers (placeholder)
+      - name: Build containers
+        run: |
+          echo "TODO: build Docker containers (e.g. docker-compose build)"
